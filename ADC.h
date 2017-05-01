@@ -25,7 +25,7 @@
 
 void ADC_Init(void);
 u_int8 ADC_IsFinished(void);
-u_int8 ADC_GetResult(void);
+u_int16 ADC_GetResult(void);
 void ADC_StartConversion(void);
 void ADC_ChannelSelection(u_int8 Channel);
 void ADC_ISR (void (*ptr_fn)(void));

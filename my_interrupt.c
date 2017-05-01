@@ -53,17 +53,17 @@ void clear_INT_FLag (u_int8 INT_Number)
 /**********************************************************/
 void my_interrupt_INT0_Call(void(*ptr_fn)(void))
 {
-	ptr_fn = ptr_INT0;
+	ptr_INT0 = ptr_fn ;
 }
 /**********************************************************/
 void my_interrupt_INT1_Call(void(*ptr_fn)(void))
 {
-	ptr_fn = ptr_INT1;
+	ptr_INT1 = ptr_fn ;
 }
 /**********************************************************/
 void my_interrupt_INT2_Call(void(*ptr_fn)(void))
 {
-	ptr_fn = ptr_INT2;
+	ptr_INT2 = ptr_fn ;
 }
 /**********************************************************/
 ISR(INT0_vect)

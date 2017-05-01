@@ -102,7 +102,7 @@ void ADC_ISR (void(*ptr_fn)(void))
 	Gptr = ptr_fn ;
 }
 /*********************************************************************************/
-static ISR(ADC_vect)
+ISR(ADC_vect)
 {
 Gptr() ;
 }
