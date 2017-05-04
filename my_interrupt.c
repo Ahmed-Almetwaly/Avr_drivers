@@ -5,6 +5,7 @@
 #include "DIO.h"
 #include "my_interrupt_private.h"
 #include "my_interrupt_cfg.h"
+#include "reg.h"
 /**********************************************************/
 static void(*ptr_INT0)(void);
 static void(*ptr_INT1)(void);

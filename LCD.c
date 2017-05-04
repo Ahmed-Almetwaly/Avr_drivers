@@ -4,6 +4,7 @@
 #include "Types.h"
 #include <avr/delay.h>
 #include "LCD_private.h"
+#include "reg.h"
 /********************************************************************/
 void LCD_Send_Command(u_int8 cmd)
 {

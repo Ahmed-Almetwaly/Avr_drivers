@@ -12,17 +12,17 @@
 #define INT2_PIN 10
 
 // to enable interrupt set pin 7 SREG
-#define SREG   *((volatile u_int8 *) 0x5F)
+//#define SREG   *((volatile u_int8 *) 0x5F)
 
 // External Interrupt Flag INTF1 , INTF0, INTF2 ---> pins 7,6,5
- #define GIFR *((volatile u_int8 *) 0x5A)
+// #define GIFR *((volatile u_int8 *) 0x5A)
 
 /*
  *  set MODE (low level , fallimg edge,....)
  *  MCUCR 0,1 --- INT0
  *  MCUCR 2,3 --- INT1
 */
- #define MCUCR  *((volatile u_int8 *) 0x55)
+// #define MCUCR  *((volatile u_int8 *) 0x55)
 
 
 /*
@@ -34,9 +34,9 @@
  *
  */
 // INT0 ---> 7 , INT1 ---> 6 , INT2 ---> 5
- #define GICR *((volatile u_int8 *) 0x5B)
+// #define GICR *((volatile u_int8 *) 0x5B)
 
- #define MCUCSR *((volatile u_int8 *) 0x54)
+// #define MCUCSR *((volatile u_int8 *) 0x54)
 
 
 #endif /* MY_INTERRUPT_PRIVATE_H_ */

@@ -10,7 +10,7 @@
 
 /*------------------------------------------------------------------------------------------------------------------*/
 
-#define ADCSRA *((volatile u_int8 *) 0x26)
+// #define ADCSRA *((volatile u_int8 *) 0x26)
 
 /* ADCSRA
  * 0:2 --> prescale use 32
@@ -31,7 +31,7 @@
 #define DEV_128 0X07
 
 /*------------------------------------------------------------------------------------------------------------------*/
-#define ADMUX  *((volatile u_int8 *) 0x27)
+// #define ADMUX  *((volatile u_int8 *) 0x27)
 
 /*
  * ADMUX
@@ -57,7 +57,7 @@
 #define CHANNEL_7 0x07
 
 // ADLAR pin 4
-#define ADLAR  *((volatile u_int8 *) 0x26)
+// #define ADLAR  *((volatile u_int8 *) 0x26)
 
 // ADLAR pin 4
 #define LEFT_ADJUSTED  1
@@ -65,14 +65,14 @@
 
 /*----------------------------------------------------------------------------------------------------*/
 
-#define ADCL   *((volatile u_int8 *) 0x24)
-#define ADCH   *((volatile u_int8 *) 0x25)
-#define ADCLH  *((volatile u_int16 *) 0x24)
+// #define ADCL   *((volatile u_int8 *) 0x24)
+// #define ADCH   *((volatile u_int8 *) 0x25)
+// #define ADCLH  *((volatile u_int16 *) 0x24)
 
 /*----------------------------------------------------------------------------------------------------*/
 
 // SFIOR � Special Function IO Register Bits 7:5 ADC Auto Trigger Source p281
-#define SFIOR *((volatile u_int8 *) 0x50)
+// #define SFIOR *((volatile u_int8 *) 0x50)
 
 /*
  * FROM PIN 5-->7 TO SELECT TRIGGER SOURCE
@@ -93,7 +93,5 @@
 
 #define MODE_16 TRUE
 #define MODE_8 FALSE
-
-
 
 #endif /* ADC_PRIVATE_H_ */

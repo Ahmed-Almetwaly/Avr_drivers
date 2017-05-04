@@ -13,6 +13,7 @@
 #include "segment_cfg.h"
 #include "segment.h"
 #include "DIO.h"
+#include "reg.h"
 
 void segment_Init(void)
 {
