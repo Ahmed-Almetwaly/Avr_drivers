@@ -84,8 +84,8 @@
 
 //prototypes
 void UART_Init (void) ;
-void UART_Write (u_int8 data);
-u_int8 UART_Read (void);
+void UART_Write (u_int16 data);
+u_int16 UART_Read (void);
 void UART_RX_INT_call (void(*ptr_fn)(void));
 void UART_TX_INT_call (void(*ptr_fn)(void));
 void UART_Empty_INT_call (void(*ptr_fn)(void));

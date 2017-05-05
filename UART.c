@@ -122,9 +122,28 @@ void UART_Init (void)
 
 }
 /*--------------------------------------------------------------*/
-void UART_Write (u_int8 data)
+void UART_Write (u_int16 data)
 {
+	if (UART_CHAR_SIZE>8)
+	{
+		if (((data&0xFF00)>>8)==TRUE)
+			SET_BIT(UCSRB,0);
+		else
+			CLEAR_BIT(UCSRB,0);
+		Ass_PINS(UDR,(data<<1)>>1);
+	}
+	else
 	Ass_PINS(UDR,data);
+}
+/*--------------------------------------------------------------*/
+u_int16 UART_Read (void)
+{
+	u_int16 data ;
+	if (UART_CHAR_SIZE>8)
+		data = (GET_BIT(UCSRB,1)<<8)|GET_PINS(UDR,0xFF);
+	else
+		data = GET_PINS(UDR,0xFF);
+	return data ;
 }
 /*--------------------------------------------------------------*/
 u_int8 UART_Trasmision_Complete (void)
@@ -145,11 +164,6 @@ u_int8 UART_Receive_Complete (void)
 u_int8 UART_Data_Reg_Empty_Complete (void)
 {
 	return GET_BIT(UCSRA,5) ;
-}
-/*--------------------------------------------------------------*/
-u_int8 UART_Read (void)
-{
-	return GET_PINS(UDR,0xFF);
 }
 /*--------------------------------------------------------------*/
 void UART_RX_INT_call (void(*ptr_fn)(void))
