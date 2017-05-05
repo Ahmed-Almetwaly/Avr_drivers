@@ -1,3 +1,6 @@
+#ifndef HW_UART_H_
+#define HW_UART_H_
+
 #include "Types.h"
 #include "reg.h"
 
@@ -29,8 +32,8 @@
  * Bit 0 – TXB8: Transmit Data Bit 8 Must be written before writing the low bits to UDR.
  *
  */
-#define UART_UCSZ2_8BIT 0
-#define UART_UCSZ2_9BIT 1
+#define UCSZ2_8BIT 0
+#define UCSZ2_9BIT 1
 /*
  * UCSRC – USART Control and Status Register C
  * Bit 7 – URSEL: Register Select accessing the UCSRC or the UBRRH Register
@@ -44,25 +47,27 @@
    UCPOL bit sets the relationship between data output change and data input sample, and the
    synchronous clock (XCK)
  */
-// Bit6
-#define UART_ASYNCHRONOUS 0
-#define UART_SYNCHRONOUS  1
+// Bit6,1
+#define ASYNCHRONOUS 0
+#define SYNCHRONOUS  1
 // Bts 4,5
-#define UART_PAIRTY_DISABLE 0X00
-#define UART_PAIRTY_EVEN 0X02
-#define UART_PAIRTY_ODD 0X03
+#define PAIRTY_DISABLE 0X00
+#define PAIRTY_EVEN 0X02
+#define PAIRTY_ODD 0X03
 // Bit3
-#define UART_STOP_1BIT 0
-#define UART_STOP_2BIT 1
+#define STOP_1BIT 0
+#define STOP_2BIT 1
 // Bit2,1
-#define UART_UCSZ01_5BIT 0x00
-#define UART_UCSZ01_6BIT 0x01
-#define UART_UCSZ01_7BIT 0x02
-#define UART_UCSZ01_8BIT 0x03
-#define UART_UCSZ01_9BIT 0x03
-// Bit 0
-#define UART_XCK_ASYNCRONOUS 0
-#define UART_XCK_SYNCRONOUS  1
+#define UCSZ01_5BIT 0x00
+#define UCSZ01_6BIT 0x01
+#define UCSZ01_7BIT 0x02
+#define UCSZ01_8BIT 0x03
+#define UCSZ01_9BIT 0x03
+
+/*// Bit 0
+#define XCK_ASYNCRONOUS 0
+#define XCK_SYNCRONOUS  1
+*/
 
 /*
  * UBRRL – USART Baud Rate Register Low
@@ -76,3 +81,17 @@
  * Bits 3:0 – UBRR[3:0]: USART Baud Rate Register [n = 11:8]
  */
 // get baud rate from data sheet
+
+//prototypes
+void UART_Init (void) ;
+void UART_Write (u_int8 data);
+u_int8 UART_Read (void);
+void UART_RX_INT_call (void(*ptr_fn)(void));
+void UART_TX_INT_call (void(*ptr_fn)(void));
+void UART_Empty_INT_call (void(*ptr_fn)(void));
+
+
+
+
+
+#endif
