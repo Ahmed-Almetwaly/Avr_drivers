@@ -19,6 +19,6 @@
 
 #define UART_2X_MODE FALSE
 
-#define BAUD_RATE 103
+#define UART_BAUD_RATE 103
 
 #endif

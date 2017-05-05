@@ -47,10 +47,10 @@
    UCPOL bit sets the relationship between data output change and data input sample, and the
    synchronous clock (XCK)
  */
-// Bit6,1
+// Bit6,0
 #define ASYNCHRONOUS 0
 #define SYNCHRONOUS  1
-// Bts 4,5
+// Bits 4,5
 #define PAIRTY_DISABLE 0X00
 #define PAIRTY_EVEN 0X02
 #define PAIRTY_ODD 0X03
@@ -75,7 +75,7 @@
  */
 
 /*
- * UBBRH – USART Baud Rate Register High
+ * UBRRH – USART Baud Rate Register High
  * Bit 7 – URSEL: Register Select accessing the UBRRH or the UCSRC Register. It is read as zero when reading UBRRH.
  	 	   The URSEL must be zero when writing the UBRRH.
  * Bits 3:0 – UBRR[3:0]: USART Baud Rate Register [n = 11:8]
@@ -89,9 +89,9 @@ u_int8 UART_Read (void);
 void UART_RX_INT_call (void(*ptr_fn)(void));
 void UART_TX_INT_call (void(*ptr_fn)(void));
 void UART_Empty_INT_call (void(*ptr_fn)(void));
-
-
-
+u_int8 UART_Receive_Complete (void);
+u_int8 UART_Trasmision_Complete (void);
+u_int8 UART_Data_Reg_Empty_Complete (void);
 
 
 #endif
