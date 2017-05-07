@@ -37,6 +37,7 @@
 #define ADCL *((volatile u_int8*) 0x24)
 #define ADCLH *((volatile u_int16*) 0x24)
 #define SFIOR *((volatile u_int8*) 0x50)
+#define OCR0  *((volatile u_int8*) 0x5C)
 #define TCCR0 *((volatile u_int8*) 0x53)
 #define TCNT0 *((volatile u_int8*) 0x52)
 #define TIMSK *((volatile u_int8*) 0x59)

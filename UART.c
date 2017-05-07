@@ -1,4 +1,5 @@
 #include "reg.h"
+#include "Avr/interrupt.h"
 #include "Types.h"
 #include "MACROS.h"
 #include "DIO.h"
@@ -12,6 +13,26 @@
 
 void UART_Init (void)
 {
+	// Baud Rate
+	if (UART_BAUD_RATE < 0xFF)
+	{
+		//CLEAR_BIT(UBRRH,7);
+		//CLEAR_PINS(UBRRH,0x0F);
+
+		Ass_PINS(UBRRL,UART_BAUD_RATE);
+	}
+	else
+	{
+		//CLEAR_BIT(UBRRH,7);
+		//CLEAR_PINS(UBRRH,0x0F);
+		//SET_PINS(UBRRH,UART_BAUD_RATE>>8);
+
+		Ass_PINS(UBRRL,UART_BAUD_RATE);
+	}
+
+	/*--------------------------------------------------------------*/
+
+	/*
 	// Interrupt Enable
 	if (RX_Int_En || TX_Int_En || Data_Reg_Empty_Int_En)
 		SET_BIT(SREG,7);
@@ -30,6 +51,7 @@ void UART_Init (void)
 		SET_BIT(UCSRB,5);
 	else
 		CLEAR_BIT(UCSRB,5);
+	*/
 	/*--------------------------------------------------------------*/
 	// RX_EN
 	if(RX_En == TRUE)
@@ -48,31 +70,31 @@ void UART_Init (void)
 			CLEAR_BIT(UCSRB,2);
 			SET_BIT(UCSRC,7);
 			CLEAR_PINS(UCSRC,0x03);
-			SET_PINS(UCSRC,UCSZ01_5BIT);
+			SET_PINS(UCSRC,UCSZ01_5BIT<<1);
 			break;
 		case 6:
 			CLEAR_BIT(UCSRB,2);
 			SET_BIT(UCSRC,7);
 			CLEAR_PINS(UCSRC,0x03);
-			SET_PINS(UCSRC,UCSZ01_6BIT);
+			SET_PINS(UCSRC,UCSZ01_6BIT<<1);
 			break;
 		case 7:
 			CLEAR_BIT(UCSRB,2);
 			SET_BIT(UCSRC,7);
 			CLEAR_PINS(UCSRC,0x03);
-			SET_PINS(UCSRC,UCSZ01_7BIT);
+			SET_PINS(UCSRC,UCSZ01_7BIT<<1);
 			break;
 		case 8:
 			CLEAR_BIT(UCSRB,2);
 			SET_BIT(UCSRC,7);
 			CLEAR_PINS(UCSRC,0x03);
-			SET_PINS(UCSRC,UCSZ01_8BIT);
+			SET_PINS(UCSRC,UCSZ01_8BIT<<1);
 			break;
 		case 9:
 			SET_BIT(UCSRB,2);
 			SET_BIT(UCSRC,7);
 			CLEAR_PINS(UCSRC,0x03);
-			SET_PINS(UCSRC,UCSZ01_9BIT);
+			SET_PINS(UCSRC,UCSZ01_9BIT<<1);
 			break;
 	}
 	/*--------------------------------------------------------------*/
@@ -102,24 +124,12 @@ void UART_Init (void)
 		CLEAR_BIT(UCSRC,6);
 	}
 	/*--------------------------------------------------------------*/
-	// Baud Rate
-	if (UART_BAUD_RATE < 0xFF)
-	{
-		CLEAR_BIT(UBRRH,7);
-		CLEAR_PINS(UBRRH,0x0F);
-		CLEAR_PINS(UBRRL,0xFF);
-		SET_PINS(UBRRL,UART_BAUD_RATE);
-	}
+// stop
+	SET_BIT(UCSRC,7);
+	if (STOP_1BIT)
+		SET_BIT(UCSRC,3);
 	else
-	{
-		CLEAR_BIT(UBRRH,7);
-		CLEAR_PINS(UBRRH,0x0F);
-		SET_PINS(UBRRH,UART_BAUD_RATE>>8);
-		CLEAR_PINS(UBRRL,0xFF);
-		SET_PINS(UBRRL,UART_BAUD_RATE&0x00FF);
-	}
-	/*--------------------------------------------------------------*/
-
+		CLEAR_BIT(UCSRC,3);
 }
 /*--------------------------------------------------------------*/
 void UART_Write (u_int16 data)
