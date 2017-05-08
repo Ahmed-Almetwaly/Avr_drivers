@@ -54,4 +54,10 @@
 #define UBRRH *((volatile u_int8*) 0x40)
 #define UCSRC *((volatile u_int8*) 0x40)
 #define UDR   *((volatile u_int8*) 0x2C)
+// SPI
+#define SPDR  *((volatile u_int8*) 0x2F)
+#define SPSR  *((volatile u_int8*) 0x2E)
+#define SPCR  *((volatile u_int8*) 0x2D)
+
+
 #endif /* HW_REG_H_ */
